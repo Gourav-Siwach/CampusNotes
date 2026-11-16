@@ -1,0 +1,15 @@
+#!/bin/sh
+
+msg=$(head -n1 "$1")
+
+pattern='^(feat|fix|docs|style|refactor|test|chore)(\([a-zA-Z0-9._-]+\))?: .+'
+
+if echo "$msg" | grep -Eq "$pattern"
+then
+    echo "Commit message format is valid!"
+    exit 0
+else
+    echo "ERROR: Invalid commit message!"
+    echo "Use: feat: message or fix: message"
+    exit 1
+fi
